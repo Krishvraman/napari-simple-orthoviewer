@@ -6,6 +6,7 @@ import tifffile
 from napari.utils.colormaps import label_colormap
 from qtpy.QtWidgets import QWidget, QVBoxLayout, QComboBox, QPushButton, QLabel
 import napari
+import matplotlib.colors as mcolors
 
 class Ortho_control(QWidget):
     def __init__(self, napari_viewer):
@@ -102,9 +103,10 @@ class OrthogonalViewer:
         self.custcmap = matplotlib_cmap
 
         if self.label is not None:
-            self.label_axial = self.axes[0].imshow(self.label[self.slices[0], :, :], cmap=self.custcmap, alpha=0.5, interpolation='none')
-            self.label_coronal = self.axes[1].imshow(self.label[:, self.slices[1], :], cmap=self.custcmap, alpha=0.5, interpolation='none')
-            self.label_sagittal = self.axes[2].imshow(self.label[:, :, self.slices[2]], cmap=self.custcmap, alpha=0.5, interpolation='none')
+            self.norm = mcolors.Normalize(vmin=self.label.min(), vmax=self.label.max())
+            self.label_axial = self.axes[0].imshow(self.label[self.slices[0], :, :], cmap=self.custcmap,norm=self.norm, alpha=0.5, interpolation='none')
+            self.label_coronal = self.axes[1].imshow(self.label[:, self.slices[1], :], cmap=self.custcmap, norm=self.norm ,alpha=0.5, interpolation='none')
+            self.label_sagittal = self.axes[2].imshow(self.label[:, :, self.slices[2]], cmap=self.custcmap, norm=self.norm,alpha=0.5, interpolation='none')
 
         # Set titles
         self.axes[0].set_title('XY')
@@ -238,9 +240,9 @@ class OrthogonalViewer:
             # Clear existing labels
             self.clear_labels()
             # Replot the labels
-            self.label_axial = self.axes[0].imshow(self.label[self.slices[0], :, :], cmap=self.custcmap, alpha=0.5, interpolation='none')
-            self.label_coronal = self.axes[1].imshow(self.label[:, self.slices[1], :], cmap=self.custcmap, alpha=0.5, interpolation='none')
-            self.label_sagittal = self.axes[2].imshow(self.label[:, :, self.slices[2]], cmap=self.custcmap, alpha=0.5, interpolation='none')
+            self.label_axial = self.axes[0].imshow(self.label[self.slices[0], :, :], cmap=self.custcmap, norm=self.norm, alpha=0.5, interpolation='none')
+            self.label_coronal = self.axes[1].imshow(self.label[:, self.slices[1], :], cmap=self.custcmap, norm=self.norm , alpha=0.5, interpolation='none')
+            self.label_sagittal = self.axes[2].imshow(self.label[:, :, self.slices[2]], cmap=self.custcmap, norm=self.norm, alpha=0.5, interpolation='none')
 
         self.update_slice_lines()
 
