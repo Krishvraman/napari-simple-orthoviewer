@@ -16,6 +16,15 @@ To install latest development version :
     pip install git+https://github.com/Krishvraman/napari-simple-orthoviewer.git
 
 
+## Usage
+
+
+
+https://github.com/user-attachments/assets/a41c12ed-1de9-4027-b461-d08a55252221
+
+
+
+
 
 ## License
 
