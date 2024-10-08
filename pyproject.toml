@@ -28,7 +28,9 @@ dependencies = [
     "numpy",
     "magicgui",
     "qtpy",
-    "scikit-image",
+    "matplotlib",
+    "tifffile",
+    "napari",
 ]
 
 [project.optional-dependencies]
