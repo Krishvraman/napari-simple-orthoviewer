@@ -18,13 +18,7 @@ To install latest development version :
 
 ## Usage
 
-<h2 align="center">Simple Ortho Viewer Demo</h2>
-<div align="center">
-
-https://github.com/user-attachments/assets/a41c12ed-1de9-4027-b461-d08a55252221
-
-</div>
-
+![ortho_views_with_overlay](https://github.com/user-attachments/assets/33c00852-13b8-42ca-aa37-cbd28743297c)
 
 
 
