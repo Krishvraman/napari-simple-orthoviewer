@@ -48,18 +48,24 @@ class Ortho_control(QWidget):
     def update_image_layers(self, event=None):
         self.image_layer_dropdown.clear()
         image_layers = [layer.name for layer in self.viewer.layers if isinstance(layer, napari.layers.Image)]
-        self.image_layer_dropdown.addItems(image_layers)
+        self.image_layer_dropdown.addItems([" "] + image_layers)
 
     def update_label_layers(self, event=None):
         self.label_layer_dropdown.clear()
         label_layers = [layer.name for layer in self.viewer.layers if isinstance(layer, napari.layers.Labels)]
-        self.label_layer_dropdown.addItems(label_layers)
+        self.label_layer_dropdown.addItems([" "] + label_layers)
 
     def run_function(self):
         selected_image_name = self.image_layer_dropdown.currentText()
         selected_label_name = self.label_layer_dropdown.currentText()
         self.volume = None
         self.label = None
+
+        if selected_image_name == " ":
+            selected_image_name = None
+
+        if selected_label_name == " ":
+            selected_label_name = None
 
         if selected_image_name:
             layer = self.viewer.layers[selected_image_name]
